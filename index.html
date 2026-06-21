@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>De'Зорі | 735 M.A.S.L. — Відпочинок у Карпатах</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@200;300;400&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav class="nav" id="nav">
+    <a href="#hero" class="nav-logo">De'<span>Зорі</span></a>
+    <button class="nav-burger" id="navBurger" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">Про місце</a></li>
+      <li><a href="#gallery">Галерея</a></li>
+      <li><a href="#prices">Ціни</a></li>
+      <li><a href="#booking">Бронювання</a></li>
+      <li><a href="#contacts">Контакти</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero" id="hero">
+    <!-- Зоряне небо через canvas (генерується JS) -->
+    <canvas class="stars-canvas" id="starsCanvas"></canvas>
+
+    <!-- Місяць (SVG) -->
+    <div class="moon">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="moonGrad" cx="40%" cy="40%">
+            <stop offset="0%" stop-color="#e8d5a3"/>
+            <stop offset="60%" stop-color="#c9a876"/>
+            <stop offset="100%" stop-color="#8a6c3a"/>
+          </radialGradient>
+          <mask id="crescentMask">
+            <rect width="200" height="200" fill="white"/>
+            <circle cx="135" cy="75" r="72" fill="black"/>
+          </mask>
+        </defs>
+        <circle cx="100" cy="100" r="80" fill="url(#moonGrad)" mask="url(#crescentMask)"/>
+      </svg>
+    </div>
+
+    <!-- Силует гір -->
+    <div class="mountains">
+      <svg viewBox="0 0 1440 300" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,300 L0,200 L120,120 L240,180 L360,80 L480,160 L600,60 L720,140 L840,40 L960,130 L1080,70 L1200,150 L1320,90 L1440,160 L1440,300 Z" fill="#0a0e17"/>
+        <path d="M0,300 L0,240 L180,170 L300,210 L420,140 L540,190 L660,120 L780,175 L900,100 L1020,160 L1140,110 L1260,180 L1440,130 L1440,300 Z" fill="#0d1320" opacity="0.9"/>
+      </svg>
+    </div>
+
+    <!-- Hero контент -->
+    <div class="hero-content fade-in">
+      <p class="hero-alt">735 M.A.S.L.</p>
+      <h1 class="hero-title">De'<em>Зорі</em></h1>
+      <p class="hero-tagline">Відпочинок у Карпатах&nbsp;&nbsp;·&nbsp;&nbsp;Будинок у горах</p>
+      <a href="#booking" class="btn btn-primary">Забронювати</a>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="scroll-hint">
+      <span></span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ABOUT
+  ============================================================ -->
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="section-label reveal">Про місце</div>
+      <h2 class="section-title reveal">Де тиша стає розкішшю</h2>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>Серед карпатських схилів на висоті 735 метрів над рівнем моря розташовані будиночки De'Зорі — місце, де ніч виглядає так, як її намалювали б зірки.</p>
+          <p>Кожен будиночок розрахований на 2–4 гостей і має все необхідне для повного відключення: затишний інтер'єр, власний чан просто неба, панорамні вікна з видом на гори.</p>
+          <p class="about-location"><span>📍</span> Волосянка, Львівська обл., Карпати</p>
+        </div>
+        <div class="about-features reveal">
+          <div class="feature">
+            <div class="feature-icon">✦</div>
+            <div>
+              <strong>Будиночки для 2–4 осіб</strong>
+              <p>Приватний простір без зайвих сусідів</p>
+            </div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">✦</div>
+            <div>
+              <strong>Чан просто неба</strong>
+              <p>Гаряча вода, зоряне небо — ваша персональна сцена</p>
+            </div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">✦</div>
+            <div>
+              <strong>Панорамні світанки</strong>
+              <p>Карпатські гори прямо за вікном спальні</p>
+            </div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">✦</div>
+            <div>
+              <strong>Зорі видно з ліжка</strong>
+              <p>Мінімум світлового забруднення, максимум всесвіту</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GALLERY
+  ============================================================ -->
+  <section class="gallery section" id="gallery">
+    <div class="container">
+      <div class="section-label reveal">Галерея</div>
+      <h2 class="section-title reveal">Простір, що надихає</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item gallery-item--large reveal">
+          <div class="gallery-placeholder">
+            <div class="gallery-ph-icon">🏔</div>
+          </div>
+          <div class="gallery-caption">Вид на Карпати</div>
+        </div>
+        <div class="gallery-item reveal">
+          <div class="gallery-placeholder">
+            <div class="gallery-ph-icon">🏡</div>
+          </div>
+          <div class="gallery-caption">Екстер'єр будиночка</div>
+        </div>
+        <div class="gallery-item reveal">
+          <div class="gallery-placeholder">
+            <div class="gallery-ph-icon">🛁</div>
+          </div>
+          <div class="gallery-caption">Чан під зорями</div>
+        </div>
+        <div class="gallery-item reveal">
+          <div class="gallery-placeholder">
+            <div class="gallery-ph-icon">🛏</div>
+          </div>
+          <div class="gallery-caption">Спальня з панорамним вікном</div>
+        </div>
+        <div class="gallery-item reveal">
+          <div class="gallery-placeholder">
+            <div class="gallery-ph-icon">🌄</div>
+          </div>
+          <div class="gallery-caption">Ранковий туман</div>
+        </div>
+        <div class="gallery-item reveal">
+          <div class="gallery-placeholder">
+            <div class="gallery-ph-icon">✨</div>
+          </div>
+          <div class="gallery-caption">Зоряна ніч</div>
+        </div>
+      </div>
+      <p class="gallery-note reveal">Реальні фото будуть додані замовником</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PRICES
+  ============================================================ -->
+  <section class="prices section" id="prices">
+    <div class="container">
+      <div class="section-label reveal">Ціни</div>
+      <h2 class="section-title reveal">Вартість проживання</h2>
+
+      <div class="prices-grid">
+        <!-- Картка 1 -->
+        <div class="price-card reveal">
+          <div class="price-card-header">
+            <div class="price-badge">Будній</div>
+            <h3>Пн — Чт</h3>
+          </div>
+          <div class="price-card-body">
+            <div class="price-main">
+              <span class="price-amount">2 800</span>
+              <span class="price-currency">грн / ніч</span>
+            </div>
+            <p class="price-note">2 гості включено</p>
+          </div>
+        </div>
+
+        <!-- Картка 2 — виділена -->
+        <div class="price-card price-card--featured reveal">
+          <div class="price-card-header">
+            <div class="price-badge">Вихідний</div>
+            <h3>Пт — Нд</h3>
+          </div>
+          <div class="price-card-body">
+            <div class="price-main">
+              <span class="price-amount">3 500</span>
+              <span class="price-currency">грн / ніч</span>
+            </div>
+            <p class="price-note">2 гості включено</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Додаткові опції -->
+      <div class="price-extras reveal">
+        <h3 class="extras-title">Додаткові послуги</h3>
+        <div class="extras-grid">
+          <div class="extra-item">
+            <span class="extra-label">Додаткове розміщення</span>
+            <span class="extra-price">+500 грн / особа / ніч</span>
+          </div>
+          <div class="extra-item">
+            <span class="extra-label">Тварини (домашні улюбленці)</span>
+            <span class="extra-price">+300 грн / доба</span>
+          </div>
+          <div class="extra-item">
+            <span class="extra-label">Чан (2 години)</span>
+            <span class="extra-price">+800 грн</span>
+          </div>
+          <div class="extra-item">
+            <span class="extra-label">Ранній заїзд / пізній виїзд</span>
+            <span class="extra-price">за домовленістю</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BOOKING (Календар)
+  ============================================================ -->
+  <section class="booking section" id="booking">
+    <div class="container">
+      <div class="section-label reveal">Бронювання</div>
+      <h2 class="section-title reveal">Оберіть дати</h2>
+      <p class="booking-subtitle reveal">Клікніть на дату заїзду, потім на дату виїзду</p>
+
+      <div class="booking-layout">
+        <!-- Календар -->
+        <div class="calendar-wrap reveal">
+          <div class="calendar" id="calendar">
+            <div class="calendar-nav">
+              <button class="cal-nav-btn" id="prevMonth" aria-label="Попередній місяць">&#8592;</button>
+              <div class="cal-month-year" id="calMonthYear"></div>
+              <button class="cal-nav-btn" id="nextMonth" aria-label="Наступний місяць">&#8594;</button>
+            </div>
+            <div class="calendar-weekdays">
+              <span>Пн</span><span>Вт</span><span>Ср</span>
+              <span>Чт</span><span>Пт</span><span>Сб</span><span>Нд</span>
+            </div>
+            <div class="calendar-days" id="calDays"></div>
+          </div>
+
+          <!-- Легенда -->
+          <div class="cal-legend">
+            <span class="legend-item"><span class="leg-dot leg-dot--free"></span>Вільно</span>
+            <span class="legend-item"><span class="leg-dot leg-dot--busy"></span>Зайнято</span>
+            <span class="legend-item"><span class="leg-dot leg-dot--selected"></span>Вибрано</span>
+          </div>
+        </div>
+
+        <!-- Підсумок бронювання -->
+        <div class="booking-summary reveal" id="bookingSummary">
+          <h3>Ваш вибір</h3>
+          <div class="summary-row">
+            <span>Заїзд:</span>
+            <span id="sumCheckIn">—</span>
+          </div>
+          <div class="summary-row">
+            <span>Виїзд:</span>
+            <span id="sumCheckOut">—</span>
+          </div>
+          <div class="summary-row">
+            <span>Кількість ночей:</span>
+            <span id="sumNights">—</span>
+          </div>
+          <div class="summary-divider"></div>
+          <div class="summary-row summary-total">
+            <span>Разом:</span>
+            <span id="sumTotal">—</span>
+          </div>
+          <p class="summary-note" id="sumNote"></p>
+
+          <div class="booking-actions">
+            <button class="btn btn-primary" id="btnBook" disabled>Забронювати</button>
+            <button class="btn btn-ghost" id="btnClear">Скинути</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BOOKING MODAL
+  ============================================================ -->
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <button class="modal-close" id="modalClose" aria-label="Закрити">&times;</button>
+      <h3 id="modalTitle">Заявка на бронювання</h3>
+      <p class="modal-dates" id="modalDates"></p>
+      <form class="booking-form" id="bookingForm" novalidate>
+        <div class="form-group">
+          <label for="guestName">Ваше ім'я *</label>
+          <input type="text" id="guestName" placeholder="Іванна" required />
+        </div>
+        <div class="form-group">
+          <label for="guestPhone">Телефон *</label>
+          <input type="tel" id="guestPhone" placeholder="+380 XX XXX XX XX" required />
+        </div>
+        <div class="form-group">
+          <label for="guestComment">Коментар</label>
+          <textarea id="guestComment" rows="3" placeholder="Кількість гостей, побажання..."></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Надіслати запит</button>
+          <a href="https://www.instagram.com/de3opi/" target="_blank" rel="noopener" class="btn btn-ghost">Написати в Direct</a>
+        </div>
+      </form>
+      <div class="form-success" id="formSuccess" hidden>
+        <div class="success-icon">✓</div>
+        <h4>Запит надіслано!</h4>
+        <p>Ми зв'яжемося з вами найближчим часом для підтвердження бронювання.</p>
+        <button class="btn btn-ghost" id="btnCloseSuccess">Закрити</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       CONTACTS
+  ============================================================ -->
+  <section class="contacts section" id="contacts">
+    <div class="container">
+      <div class="section-label reveal">Контакти</div>
+      <h2 class="section-title reveal">Зв'яжіться з нами</h2>
+      <div class="contacts-grid">
+        <div class="contact-card reveal">
+          <div class="contact-icon">📍</div>
+          <div class="contact-info">
+            <strong>Адреса</strong>
+            <p>с. Волосянка, Турківський р-н<br>Львівська обл., Карпати</p>
+          </div>
+        </div>
+        <div class="contact-card reveal">
+          <div class="contact-icon">📸</div>
+          <div class="contact-info">
+            <strong>Instagram</strong>
+            <a href="https://www.instagram.com/de3opi/" target="_blank" rel="noopener">@de3opi</a>
+          </div>
+        </div>
+        <div class="contact-card reveal">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-info">
+            <strong>Бронювання</strong>
+            <p>Пишіть у Direct Instagram</p>
+          </div>
+        </div>
+      </div>
+      <div class="contacts-cta reveal">
+        <a href="https://www.instagram.com/de3opi/" target="_blank" rel="noopener" class="btn btn-primary">
+          Написати в Instagram Direct
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-logo">De'<span>Зорі</span></div>
+      <p class="footer-tagline">735 M.A.S.L. · Волосянка · Карпати</p>
+      <p class="footer-copy">&copy; 2025 De'Зорі. Всі права захищено.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
